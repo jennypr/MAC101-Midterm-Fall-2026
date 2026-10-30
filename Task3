@@ -1,0 +1,108 @@
+#include <iostream>
+using namespace std; /* even though I used this, after some point I got an error that cout is amgiguous, and after I did some research VS code
+ is finding more than one possible definition of cout and doesn't know which one to use. So I used std:: on my first <<cout */
+
+int main()
+{
+    // since I know what I am planning to build, I need to declare my variables and in this case I need to declare the choices my player needs to make
+    int choice;
+    int secondChoice;
+
+    std::cout << "THE LAST TRAIN\n";
+
+    // set the scene and introduce the story
+    cout << "It's midnight in New York City.\n";
+    cout << "You board the last subway train home.\n";
+    cout << "Suddenly, the lights flicker and the train stops.\n";
+    cout << "The doors open at an abandoned station.\n\n";
+
+    cout << "What do you do?\n";
+    cout << "1. Get off the train\n";
+    cout << "2. Stay on the train\n";
+    cout << "Enter your choice: ";
+
+    // cin reads the number the player enters
+    cin >> choice;
+
+    // I used cin.fail() in case the player types a letter instead of a number
+
+    if (cin.fail() || (choice != 1 && choice != 2))
+    {
+        cout << "Invalid input! Please enter 1 or 2.\n";
+        return 0;
+    }
+    // this if statements checks if the player enters choice 1, If the condition is true the player has to make a second choice
+
+    if (choice == 1)
+    {
+        cout << "\nYou step onto the empty platform.\n";
+        cout << "The train doors close behind you.\n";
+        cout << "You see a staircase and a dark tunnel.\n\n";
+
+        cout << "1. Climb the staircase\n";
+        cout << "2. Follow the tunnel\n";
+        cout << "Enter your choice: ";
+        cin >> secondChoice;
+
+        // Check If the player entered a valid integer and If  the number is one of the two available options.
+        if (cin.fail() || (secondChoice != 1 && secondChoice != 2))
+        {
+            cout << "Invalid input! Please enter 1 or 2.\n";
+            return 0;
+        }
+
+        if (secondChoice == 1)
+        {
+            cout << "\nYou climb the stairs and find an exit!\n";
+            cout << "Congratulations! You escaped!\n";
+        }
+        else if (secondChoice == 2)
+        {
+            cout << "\nYou enter the dark tunnel.\n";
+            cout << "The lights go out behind you.\n";
+            cout << "GAME OVER!\n";
+        }
+    }
+
+    // If the first choice was not 1, we check whether it was 2.
+    // This creates a different storyline where the player decides to remain on the train.
+    else if (choice == 2)
+    {
+        cout << "\nYou stay on the train.\n";
+        cout << "A mysterious stranger approaches you.\n";
+        cout << "He whispers: You shouldn't be here.\n\n";
+
+        cout << "1. Follow the stranger\n";
+        cout << "2. Use the emergency intercom\n";
+        cout << "Enter your choice: ";
+
+        // We use secondChoice because choice already stores the answer to the first question.
+        cin >> secondChoice;
+
+        if (cin.fail() || (secondChoice != 1 && secondChoice != 2))
+        {
+            cout << "Invalid input! Please enter 1 or 2.\n";
+            return 0;
+        }
+
+        // The following nested conditionals only execute when the player has chosen to stay on the train.
+
+        if (secondChoice == 1)
+        {
+            cout << "\nYou follow the stranger.\n";
+            cout << "He leads you into a locked room.\n";
+            cout << "You are trapped! GAME OVER!\n";
+        }
+        else if (secondChoice == 2)
+        {
+            cout << "\nYou contact the train operator.\n";
+            cout << "Help arrives and you return home safely!\n";
+            cout << "YOU WIN!\n";
+        }
+        
+    }
+
+    
+
+    return 0;
+}
